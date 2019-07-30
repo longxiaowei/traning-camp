@@ -9,7 +9,7 @@
     <packaging>pom</packaging>
     <version>1.0.0-SNAPSHOT</version>
     <modules>
-        <module>design-model</module>
+        <module>design-pattern</module>
     </modules>
 
 
