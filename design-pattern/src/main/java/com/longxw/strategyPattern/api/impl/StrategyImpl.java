@@ -5,7 +5,6 @@ import com.longxw.strategyPattern.handler.HandlerContext;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.Resource;
-import java.io.File;
 
 @Component
 public class StrategyImpl implements IStrategy {
@@ -17,7 +16,4 @@ public class StrategyImpl implements IStrategy {
         return handlerContext.getHandler(type).handler(type);
     }
 
-    private String getFileType(){
-        return "doc";
-    }
 }
