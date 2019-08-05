@@ -4,6 +4,6 @@ import java.io.File;
 
 public abstract class AbstractHandler {
 
-    public abstract String handler(File file);
+    public abstract String handler(String type);
 
 }

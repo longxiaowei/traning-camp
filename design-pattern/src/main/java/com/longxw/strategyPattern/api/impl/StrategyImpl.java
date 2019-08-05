@@ -1,7 +1,6 @@
 package com.longxw.strategyPattern.api.impl;
 
 import com.longxw.strategyPattern.api.IStrategy;
-import com.longxw.strategyPattern.handler.AbstractHandler;
 import com.longxw.strategyPattern.handler.HandlerContext;
 import org.springframework.stereotype.Component;
 
@@ -12,10 +11,10 @@ import java.io.File;
 public class StrategyImpl implements IStrategy {
 
     @Resource
-    HandlerContext<AbstractHandler> handlerContext;
+    HandlerContext handlerContext;
 
-    public String readContext(File file) {
-        return handlerContext.getHandler(this.getFileType()).handler(file);
+    public String readContext(String type) {
+        return handlerContext.getHandler(type).handler(type);
     }
 
     private String getFileType(){

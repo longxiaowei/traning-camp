@@ -16,8 +16,7 @@ public class StrategyController {
     IStrategy iStrategy;
 
     @GetMapping("/test")
-    public String test(){
-        File file = new File("D:/logs/gateway.log");
-        return iStrategy.readContext(file);
+    public String test(String type){
+        return iStrategy.readContext(type);
     }
 }

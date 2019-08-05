@@ -1,9 +1,11 @@
 package com.longxw.strategyPattern.annotation;
 
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Target;
+
+import java.lang.annotation.*;
 
 @Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Inherited
 public @interface HandlerType {
     String value();
 }
