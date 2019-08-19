@@ -1,22 +1,20 @@
 package com.longxw.strategyPattern.handler;
-import com.longxw.util.SpringBeanTool;
-
 import java.util.Map;
 
-public class HandlerContext {
+public class HandlerContext<T> {
 
-    private Map<String,Class> handleMap;
+    private Map<String,AbstractHandler> handleMap;
 
-    public HandlerContext(Map<String,Class> handleMap){
+    public HandlerContext(Map<String,AbstractHandler> handleMap){
         this.handleMap = handleMap;
     }
 
     public AbstractHandler getHandler(String type){
-        Class clazz = handleMap.get(type);
-        if(clazz == null){
+        AbstractHandler t = handleMap.get(type);
+        if(t == null){
             throw new RuntimeException("not found handler for type:"+type);
         }
-        return (AbstractHandler)SpringBeanTool.getBean(clazz);
+        return t;
     }
 
 }

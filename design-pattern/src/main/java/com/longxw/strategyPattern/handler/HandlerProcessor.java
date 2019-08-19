@@ -20,7 +20,11 @@ public class HandlerProcessor implements BeanFactoryPostProcessor {
         Map<String,Class> handleMap = new HashMap<>();
         ClassScaner.scan(basePackage,HandlerType.class).forEach(clazz ->{
             String value = clazz.getAnnotation(HandlerType.class).value();
-            handleMap.put(value,clazz);
+            try {
+                handleMap.put(value,clazz.getClass().newInstance());
+            }catch (Exception e){
+                e.printStackTrace();
+            }
         });
         HandlerContext context = new HandlerContext(handleMap);
         beanFactory.registerSingleton(HandlerContext.class.getName(),context);
