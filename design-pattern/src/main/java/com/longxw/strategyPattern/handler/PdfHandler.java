@@ -1,7 +1,6 @@
 package com.longxw.strategyPattern.handler;
 
 import com.longxw.strategyPattern.annotation.HandlerType;
-import org.springframework.stereotype.Component;
 
 @HandlerType("pdf")
 public class PdfHandler extends AbstractHandler{

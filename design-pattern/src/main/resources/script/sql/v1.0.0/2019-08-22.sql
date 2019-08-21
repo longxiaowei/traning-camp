@@ -1,0 +1,1 @@
+insert into c_sys_user2 values ('aa','bb','aa');
