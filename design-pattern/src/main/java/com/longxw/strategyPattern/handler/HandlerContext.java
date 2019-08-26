@@ -1,20 +1,20 @@
 package com.longxw.strategyPattern.handler;
 import java.util.Map;
 
-public class HandlerContext<T> {
+public class HandlerContext {
 
-    private Map<String,AbstractHandler> handleMap;
+    private Map<String,HandlerInterface> handleMap;
 
-    public HandlerContext(Map<String,AbstractHandler> handleMap){
+    public HandlerContext(Map<String,HandlerInterface> handleMap){
         this.handleMap = handleMap;
     }
 
-    public AbstractHandler getHandler(String type){
-        AbstractHandler t = handleMap.get(type);
-        if(t == null){
+    public HandlerInterface getHandler(String type){
+        HandlerInterface clazz = handleMap.get(type);
+        if(clazz == null){
             throw new RuntimeException("not found handler for type:"+type);
         }
-        return t;
+        return clazz;
     }
 
 }

@@ -17,11 +17,11 @@ public class HandlerProcessor implements BeanFactoryPostProcessor {
 
     @Override
     public void postProcessBeanFactory(ConfigurableListableBeanFactory beanFactory) throws BeansException {
-        Map<String,Class> handleMap = new HashMap<>();
+        Map<String,HandlerInterface> handleMap = new HashMap<>();
         ClassScaner.scan(basePackage,HandlerType.class).forEach(clazz ->{
             String value = clazz.getAnnotation(HandlerType.class).value();
             try {
-                //handleMap.put(value,clazz.getClass().newInstance());
+                handleMap.put(value,(HandlerInterface)clazz.newInstance());
             }catch (Exception e){
                 e.printStackTrace();
             }
