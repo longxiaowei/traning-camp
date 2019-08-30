@@ -21,7 +21,10 @@ public class HandlerProcessor implements BeanFactoryPostProcessor {
         ClassScaner.scan(basePackage,HandlerType.class).forEach(clazz ->{
             String value = clazz.getAnnotation(HandlerType.class).value();
             try {
-                handleMap.put(value,(HandlerInterface)clazz.newInstance());
+                Object o = clazz.newInstance();
+                if(o instanceof HandlerInterface){
+                    handleMap.put(value,(HandlerInterface)clazz.newInstance());
+                }
             }catch (Exception e){
                 e.printStackTrace();
             }

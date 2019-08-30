@@ -24,17 +24,4 @@ public class StrategyLambda {
         return supplier.get();
     }
 
-    public static void main(String[] args) {
-
-        File file1 = new File("/");
-
-        StrategyLambda.getClazz(()-> new StrategyLambda());
-
-        StrategyLambda.printFileName(file1,(file)->System.out.println(file.getName()));
-
-        StrategyLambda.isPdf(file1,(file -> file.getName().lastIndexOf("pdf")>0));
-
-        StrategyLambda.getTextByFunction(file1,(file -> file.getName()));
-
-    }
 }
