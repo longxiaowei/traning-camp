@@ -6,8 +6,9 @@
 
     <parent>
         <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-parent</artifactId>
-        <version>2.1.5.RELEASE</version>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.1.4.RELEASE</version>
+        <relativePath />
     </parent>
 
     <groupId>com.longxw</groupId>
@@ -17,6 +18,7 @@
 
     <modules>
         <module>design-pattern</module>
+        <module>leetcode</module>
     </modules>
 
     <properties>
@@ -40,4 +42,13 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
