@@ -19,6 +19,7 @@
     <modules>
         <module>design-pattern</module>
         <module>leetcode</module>
+        <module>mall</module>
     </modules>
 
     <properties>
