@@ -20,6 +20,9 @@
         <module>design-pattern</module>
         <module>leetcode</module>
         <module>mall</module>
+        <module>traning</module>
+        <module>skywalking-agent</module>
+        <module>mcube-mock</module>
     </modules>
 
     <properties>
@@ -44,12 +47,12 @@
         </dependencies>
     </dependencyManagement>
 
-    <build>
+    <!--<build>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
         </plugins>
-    </build>
+    </build>-->
 </project>
