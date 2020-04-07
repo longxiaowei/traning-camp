@@ -1,6 +1,6 @@
 package com.longxw.graphql.components;
 
-import com.longxw.graphql.ExecutionInputCustomizer;
+import com.longxw.graphql.api.ExecutionInputCustomizer;
 import graphql.ExecutionInput;
 import graphql.Internal;
 import org.springframework.stereotype.Component;

@@ -4,6 +4,8 @@ import com.longxw.graphql.annotation.GraphqlMutation;
 import com.longxw.graphql.annotation.GraphqlQuery;
 import com.longxw.graphql.api.DataFetcherService;
 import com.longxw.graphql.common.DataFetcherWrapper;
+import graphql.schema.DataFetcher;
+import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import java.lang.reflect.Method;
 import java.util.*;
@@ -15,22 +17,23 @@ import java.util.*;
 @Slf4j
 public class GraphQLDataFetchers{
 
-    private Map<String, DataFetcherWrapper> map;
+    @Getter
+    private List<DataFetcherWrapper> dataFetcherWrapperList;
 
     public GraphQLDataFetchers(List<DataFetcherService> list){
         if (list.isEmpty()) {
             throw new RuntimeException("找不到 DataFetcherService");
         }
 
+        dataFetcherWrapperList = new ArrayList<>(list.size() * 5);
         list.forEach(service -> {
             Method[] methods = service.getClass().getMethods();
+            String serviceName = service.getClass().getSimpleName();
             Arrays.stream(methods).forEach(method -> {
                 if(method.getAnnotation(GraphqlQuery.class) !=null){
-
+                    dataFetcherWrapperList.add(new DataFetcherWrapper(DataFetcherWrapper.TypeEnum.QUERY, method, serviceName + "_" + method.getName(), service));
                 }else if (method.getAnnotation(GraphqlMutation.class) != null){
-
-                }else{
-                    log.info("{} 类的 {} 方法未找到 @GraphqlQuery 或 @GraphqlMutation 注解", service.getClass().getSimpleName(), method.getName());
+                    dataFetcherWrapperList.add(new DataFetcherWrapper(DataFetcherWrapper.TypeEnum.QUERY, method, serviceName + "_" + method.getName(), service));
                 }
             });
         });

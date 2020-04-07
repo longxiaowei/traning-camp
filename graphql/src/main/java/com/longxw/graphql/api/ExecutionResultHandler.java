@@ -1,4 +1,4 @@
-package com.longxw.graphql;
+package com.longxw.graphql.api;
 
 import graphql.ExecutionResult;
 import graphql.PublicSpi;

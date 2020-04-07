@@ -1,6 +1,6 @@
 package com.longxw.graphql.components;
 
-import com.longxw.graphql.ExecutionInputCustomizer;
+import com.longxw.graphql.api.ExecutionInputCustomizer;
 import com.longxw.graphql.GraphQLInvocation;
 import com.longxw.graphql.GraphQLInvocationData;
 import graphql.ExecutionInput;
@@ -14,6 +14,10 @@ import org.springframework.web.context.request.WebRequest;
 
 import java.util.concurrent.CompletableFuture;
 
+/**
+ * @author longxw
+ * @since 2020/4/7
+ */
 @Component
 @Internal
 public class DefaultGraphQLInvocation implements GraphQLInvocation {

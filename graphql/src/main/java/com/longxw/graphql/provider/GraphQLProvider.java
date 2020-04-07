@@ -1,5 +1,6 @@
 package com.longxw.graphql.provider;
 
+import com.longxw.graphql.common.DataFetcherWrapper;
 import com.longxw.graphql.util.IOUtils;
 import graphql.GraphQL;
 import graphql.schema.GraphQLSchema;
@@ -52,12 +53,15 @@ public class GraphQLProvider {
     }
 
     private RuntimeWiring buildWiring() {
-        return RuntimeWiring.newRuntimeWiring()
-                .type(newTypeWiring("Query")
-                        .dataFetcher("bookById", graphQLDataFetchers.getBookByIdDataFetcher()))
-                .type(newTypeWiring("Book")
-                        .dataFetcher("author", graphQLDataFetchers.getAuthorDataFetcher()))
-                .build();
+        RuntimeWiring.Builder builder = RuntimeWiring.newRuntimeWiring();
+        for (DataFetcherWrapper dataFetcherWrapper : graphQLDataFetchers.getDataFetcherWrapperList()) {
+            if(DataFetcherWrapper.TypeEnum.QUERY == dataFetcherWrapper.getType() ){
+                builder.type(newTypeWiring("Query").dataFetcher(dataFetcherWrapper.getName(), dataFetcherWrapper.getDataFetcher()));
+            }else if(DataFetcherWrapper.TypeEnum.MUTATION == dataFetcherWrapper.getType()){
+                builder.type(newTypeWiring("Mutation").dataFetcher(dataFetcherWrapper.getName(), dataFetcherWrapper.getDataFetcher()));
+            }
+        }
+        return builder.build();
     }
 
 }

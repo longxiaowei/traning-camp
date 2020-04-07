@@ -1,5 +1,6 @@
-package com.longxw.graphql;
+package com.longxw.graphql.api;
 
+import com.longxw.graphql.GraphQLInvocation;
 import graphql.ExecutionInput;
 import graphql.PublicApi;
 import org.springframework.web.context.request.WebRequest;
