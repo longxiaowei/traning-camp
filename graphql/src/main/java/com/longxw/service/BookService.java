@@ -13,10 +13,10 @@ import org.springframework.stereotype.Service;
 public class BookService implements DataFetcherService {
 
     @GraphqlQuery
-    public Book bookById(String id){
+    public Book bookById(String id, String name){
         Book book = new Book();
         book.setId(id);
-        book.setName("名称");
+        book.setName("name");
         return book;
     }
 }

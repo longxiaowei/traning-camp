@@ -1,5 +1,5 @@
 type Query {
-    BookService_bookById(id: String): Book
+    BookService_bookById(id: String, name: String): Book
 }
 
 type Book {
