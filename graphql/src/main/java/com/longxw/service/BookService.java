@@ -16,7 +16,7 @@ public class BookService implements DataFetcherService {
     public Book bookById(String id, String name){
         Book book = new Book();
         book.setId(id);
-        book.setName("name");
+        book.setName(name);
         return book;
     }
 }
