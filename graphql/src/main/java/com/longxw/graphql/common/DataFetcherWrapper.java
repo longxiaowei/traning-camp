@@ -11,6 +11,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 /**
+ * 包装 service 方法，提供 DataFetcher
  * @author longxw
  * @since 2020/4/7
  */
