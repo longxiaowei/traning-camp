@@ -6,9 +6,9 @@ import graphql.schema.DataFetcher;
 import graphql.schema.DataFetchingEnvironment;
 import lombok.Getter;
 import lombok.Setter;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
 
 /**
  * @author longxw
@@ -21,13 +21,15 @@ public class DataFetcherWrapper {
     private Method method;
     private String name;
     private Object target;
+    private String[] parameters;
 
 
-    public DataFetcherWrapper(TypeEnum type, Method method, String name, Object target){
+    public DataFetcherWrapper(TypeEnum type, Method method, String name, Object target, String[] parameters){
         this.type = type;
         this.method = method;
         this.name = Assert.assertNotNull(name);
         this.target = target;
+        this.parameters = parameters;
     }
 
     public DataFetcher getDataFetcher() {
@@ -42,11 +44,17 @@ public class DataFetcherWrapper {
     }
 
     public Object[] getArgs(DataFetchingEnvironment environment){
-        Parameter[] parameters = this.method.getParameters();
-        if(parameters.length == 1) {
-            return new Object[]{environment.getArgument("id")};
+
+        if(this.parameters == null ){
+            return null;
         }
-        return null;
+
+        int length = this.parameters.length;
+        Object[] args = new Object[length];
+        for(int i=0;i<length;i ++ ){
+            args[i] = environment.getArgument(parameters[i]);
+        }
+        return args;
     }
 
     public enum TypeEnum{
